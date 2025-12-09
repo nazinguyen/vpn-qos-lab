@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  site-a:
+    build: .
+    container_name: site-a
+    hostname: site-a
+    cap_add: [NET_ADMIN]
+    sysctls: [net.ipv4.ip_forward=1]
+    networks: [internet-sim]
+  site-b:
+    build: .
+    container_name: site-b
+    hostname: site-b
+    cap_add: [NET_ADMIN]
+    sysctls: [net.ipv4.ip_forward=1]
+    networks: [internet-sim]
+networks:
+  internet-sim:
+    driver: bridge
+    
